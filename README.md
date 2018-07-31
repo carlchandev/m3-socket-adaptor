@@ -19,7 +19,7 @@ M3ApiRequest request = M3ApiRequest.builder()
         .responseFieldId("ITDS")
         .build();
 ```
-## Step 3 - Get Response as a Map
+## Step 3 - Call M3 API and Get Response as a Map
 ```
 Map<String, String> resultSet = m3Api.callMethod(request);
 ```
