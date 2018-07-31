@@ -7,7 +7,7 @@
 - **update MvxSockJ dependency with your repo**
 
 ## Step 1 - Config Properties File
- Config your m3 server host, port, username, password
+ Config **src/main/resources/m3-socket-api.properties** your m3 server host, port, username, password
 
 ## Step 2 - Construct Request
 ```
