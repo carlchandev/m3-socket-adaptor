@@ -7,7 +7,11 @@
 
 ## Update M3 Dependency
 - m3 is a license software, we will not upload the jar here
-- **update MvxSockJ dependency with your repo**
+- **update MvxSockJ dependency with your repo in build.gradle**
+```
+// this dependency is not in any public repo. Please replace this with your own MvxSockJ dependency
+compile "MvxAPI:MvxSockJ:1.1"
+```
 
 ## Step 1 - Config Properties File
  Config **src/main/resources/m3-socket-api.properties** your m3 server host, port, username, password
