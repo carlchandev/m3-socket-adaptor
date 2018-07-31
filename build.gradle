@@ -1,0 +1,78 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'io.franzbecker.gradle-lombok' version '1.14'
+    id 'net.ltgt.apt' version '0.10'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+lombok {
+    version = '1.18.0'
+    sha256 = ""
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.8'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+        resources {
+            srcDirs = ['src/main/resources']
+        }
+    }
+    test {
+        java {
+            srcDir 'src/test/java'
+        }
+        resources {
+            srcDir 'src/test/resources'
+        }
+    }
+}
+
+
+archivesBaseName = "movex-m3-mvxsockj-adaptor"
+version = '1.0.0'
+
+jar {
+    manifest {
+        attributes 'Main-Class' : 'carl.m3.api.M3SocketApiTestMain'
+    }
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'M3 Socket Adaptor',
+                'Implementation-Version': version,
+                'Main-Class': 'carl.m3.api.M3SocketApiTestMain'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+dependencies {
+    compile 'org.projectlombok:lombok:1.18.0'
+    apt 'org.projectlombok:lombok:1.18.0'
+
+    // this dependency is not in any public repo. Please replace this with your own MvxSockJ dependency
+    compile "MvxAPI:MvxSockJ:1.1"
+
+    testCompile 'org.junit.jupiter:junit-jupiter-api:5.2.0'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.2.0'
+    testCompile 'name.falgout.jeffrey.testing.junit5:mockito-extension:1.0.2'
+    testCompile 'org.mockito:mockito-all:1+'
+    testCompile 'org.assertj:assertj-core:3.10.0'
+
+}
