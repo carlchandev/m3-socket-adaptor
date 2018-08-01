@@ -2,7 +2,7 @@
 - an adaptor to provide easier M3 Socket Class MvxSockJ library.
 - no longer have to create clumsy socket with long list arguments
 - MvxSockJ is wrapped with an adaptor and directly read the config from properties file
-- M3Api can be mocked and unit tested because no more new instance required
+- M3Api can be mocked and unit tested because adapter provide a method "newInstance" to create a new instance of MvxSockJ for you
 - internally using MvxSockJ library
 
 ## Update M3 Dependency
